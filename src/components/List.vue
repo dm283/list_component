@@ -207,26 +207,29 @@ const checkState = () => {
 
 <template>
 
-<div @click="checkState()" class="m-5 mr-96 border-gray-400 rounded-lg h-96">
-<div class="mr-36 border border-gray-200 rounded-lg h-96 
-  backdrop-filter backdrop-grayscale drop-shadow-lg">
+<div @click="checkState()" class="max-w-max m-5 p-5 border border-gray-200 rounded-lg backdrop-filter backdrop-grayscale drop-shadow-lg">
 
-<section class="absolute z-10 ml-5 mt-5">
+<section class="">
   <div class="text-2xl font-semibold">Cities & towns</div>
 </section>
 
 
-<nav class="flex absolute z-20 ml-5 mt-16 text-sm font-semibold border-dashed border-green-500">
+
+<!-- *******************************  NAV AREA  ************************* --> 
+<nav class="mt-5 text-sm font-semibold border-dashed border-green-500">
 
 <!-- search area ************************* --> 
-<div id="searchArea" class="flex w-80 border border-gray-100 rounded-full backdrop-filter backdrop-grayscale drop-shadow-lg mr-5 hover:shadow-lg">
+<div class="inline-block">
+<div id="searchArea" class="flex mr-5 w-80 border border-gray-100 rounded-full shadow-md hover:shadow-lg">
+   <!-- w-80 border border-gray-100 rounded-full backdrop-filter 
+    backdrop-grayscale drop-shadow-lg hover:shadow-lg"> -->
 
   <div class="dropdown flex-0 bg-gray-100 h-8 rounded-l-full" @mouseover="mouseOverSearchDropdown=true" @mouseleave="mouseOverSearchDropdown=false">
     <button id="btn-6" @click="toggleDropdown('search')" class="dropbtn border-l rounded-l-full px-3 h-8 capitalize">
       {{ searchBy }}
       <i class="pi pi-angle-down" style="font-size: 0.7rem"></i>
     </button>
-    <div v-show="isDropSearchShow" class="absolute bg-white text-sm font-semibold mt-1 ml-1 w-40 
+    <div v-show="isDropSearchShow" class="absolute z-10 bg-white text-sm font-semibold mt-1 ml-1 w-40 
        border-gray-500 rounded-md overflow-hidden backdrop-filter backdrop-grayscale drop-shadow-lg">
       <ul @click="toggleDropdown('search')">
         <li class="border-b border-gray-300 pl-3 py-1.5 cursor-pointer hover:bg-gray-100" @click="searchBy='all'">All</li>
@@ -240,8 +243,10 @@ const checkState = () => {
     placeholder="Search" title="Type in a name">
 
 </div>
+</div>
 
 <!-- sort area ************************* --> 
+<div class="inline-block">
 <div id="sortArea" class="flex mr-5">
 
   <div class="flex-0" @mouseover="mouseOverSortDropdown=true" @mouseleave="mouseOverSortDropdown=false">
@@ -251,7 +256,7 @@ const checkState = () => {
       <div class="inline-block mr-1 capitalize" v-else>{{ sortBy }}</div>
       <i class="pi pi-angle-down" style="font-size: 0.7rem"></i>
     </button>
-    <div v-show="isDropSortShow" class="absolute bg-white text-sm font-semibold mt-1 ml-1 w-40 
+    <div v-show="isDropSortShow" class="absolute z-10 bg-white text-sm font-semibold mt-1 ml-1 w-40 
        border-gray-500 rounded-md overflow-hidden backdrop-filter backdrop-grayscale drop-shadow-lg">
       <ul @click="toggleDropdown('sort')">
         <li class="border-b border-gray-300 pl-3 py-1.5 cursor-pointer hover:bg-gray-100" @click="clickSortField('default')">Default</li>
@@ -265,9 +270,10 @@ const checkState = () => {
     <i :class=sortIcon style="font-size: 0.8rem; color: orange"></i>
   </button>
 </div>
+</div>
 
 <!-- filters area ************************* --> 
-<div id="filtersArea" class="mr-5">
+<div id="filtersArea" class="inline-block mr-5">
   <button id='btn-1' :class=btnStyle>
     <i class="pi pi-filter" style="font-size: 0.8rem; color: blue"></i>
     <span class="ml-2">Filter</span>
@@ -275,7 +281,7 @@ const checkState = () => {
 </div>
 
 <!-- refresh area ************************* --> 
-<div id="refreshArea" class="mr-5">
+<div id="refreshArea" class="inline-block mr-5">
   <button id='btn-2' :class=btnStyle>
     <i class="pi pi-refresh" style="font-size: 0.8rem; color: magenta"></i>
     <span class="ml-2">Refresh</span>
@@ -283,7 +289,7 @@ const checkState = () => {
 </div>
 
 <!-- add element area ************************* --> 
-<div id="addElementArea" class="mr-5">
+<div id="addElementArea" class="inline-block mr-5">
   <button id='btn-3' :class=btnStyle @click="console.log('add element')">
     <i class="pi pi-plus" style="font-size: 0.8rem; color: green"></i>
     <span class="ml-2">Add</span>
@@ -296,7 +302,7 @@ const checkState = () => {
 
 
 <!-- table area ************************* --> 
-<section class="absolute z-10 ml-5 mt-28 border rounded-lg overflow-hidden w-fit drop-shadow-lg">
+<section class="mt-5 rounded-lg overflow-x-auto drop-shadow-lg">
 <table class="">
   <thead>
     <tr class="h-10 bg-lime-500 text-base text-white font-semibold text-center">
@@ -306,8 +312,8 @@ const checkState = () => {
     </tr>
   </thead>
   <tbody>
-    <tr class="tableTr h-10 even:bg-gray-100 odd:bg-white text-base text-center 
-      cursor-pointer hover:drop-shadow-md" @click="" v-for="item in state.localData">
+    <tr class="h-10 even:bg-gray-100 odd:bg-white text-base text-center 
+      cursor-pointer hover:hover:drop-shadow-md hover:text-gray-500" @click="" v-for="item in state.localData">
       <td v-for="field in state.tableFields">
         <div v-if="typeof(item[field])=='boolean' & item[field]==true"><i class="pi pi-check-square"></i></div>
         <div v-else-if="typeof(item[field])=='boolean' & item[field]==false"><i class="pi pi-stop"></i></div>
@@ -319,16 +325,12 @@ const checkState = () => {
 </section>
 
 </div>
-</div>
+
 
 </template>
 
 
 <style scope>
-.tableTr:hover {
-  color: #78716C;
-}
-
 #btn-1:hover, #btn-2:hover, #btn-3:hover,
 #btn-4:hover, #btn-5:hover, #btn-6:hover {
   background-color: #E4E4E7;
