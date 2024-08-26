@@ -1,9 +1,9 @@
 <script setup>
 import { reactive, onMounted } from 'vue';
+import { RouterView } from 'vue-router';
 import axios from 'axios';
 import List from './components/List.vue';
-import List2 from './components/List.vue';
-
+import Navbar from './components/Navbar.vue';
 
 // const state = reactive({
 //   data: [],
@@ -28,6 +28,8 @@ import List2 from './components/List.vue';
 </script>
 
 <template>
-  <List />
+  <Navbar />
+  <RouterView />
+  <!-- <List /> -->
   <!-- <List :data="state.data"/> -->
 </template>

@@ -290,10 +290,12 @@ const checkState = () => {
 
 <!-- add element area ************************* --> 
 <div id="addElementArea" class="inline-block mr-5">
-  <button id='btn-3' :class=btnStyle @click="console.log('add element')">
-    <i class="pi pi-plus" style="font-size: 0.8rem; color: green"></i>
-    <span class="ml-2">Add</span>
-  </button>
+  <RouterLink to="/items/add">
+    <button id='btn-3' :class=btnStyle @click="console.log('add element')">
+      <i class="pi pi-plus" style="font-size: 0.8rem; color: green"></i>
+      <span class="ml-2">Add</span>
+    </button>
+  </RouterLink>
 </div>
 
 </nav>
