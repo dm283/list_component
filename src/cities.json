@@ -1,0 +1,40 @@
+{
+"cities": [
+  {
+    "id": "1",
+    "name": "Nairobi",
+    "country": "Kenya",
+    "established": "April 1, 1899",
+    "area": 696.1,
+    "population": 4397073,
+    "isCapital": true
+  },
+  {
+    "id": "2",
+    "name": "Omsk",
+    "country": "Russia",
+    "established": "August 2, 1716",
+    "area": 572.9,
+    "population": 1154116,
+    "isCapital": false
+  },
+  {
+    "id": "3",
+    "name": "Vancouver",
+    "country": "Canada",
+    "established": "March 10, 1870",
+    "area": 123.63,
+    "population": 662248,
+    "isCapital": false
+  },
+  {
+    "id": "4",
+    "name": "Havana",
+    "country": "Cuba",
+    "established": "November 16, 1519",
+    "area": 728.26,
+    "population": 1814207,
+    "isCapital": true
+  }
+]
+}
