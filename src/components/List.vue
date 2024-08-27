@@ -319,6 +319,12 @@ const checkState = () => {
       <td v-for="field in state.tableFields">
         <div v-if="typeof(item[field])=='boolean' & item[field]==true"><i class="pi pi-check-square"></i></div>
         <div v-else-if="typeof(item[field])=='boolean' & item[field]==false"><i class="pi pi-stop"></i></div>
+        
+        <!-- this is nail for render date type field !!!! -->
+        <div v-else-if="field=='established'">
+          {{ item[field].slice(8, 10) }}/{{ item[field].slice(5, 7) }}/{{ item[field].slice(0, 4) }}
+        </div>
+
         <div v-else>{{ item[field] }}</div>
       </td>
     </tr>

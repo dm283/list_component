@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Nairobi",
       "country": "Kenya",
-      "established": "April 1, 1899",
+      "established": "1899-04-01",
       "area": 696.1,
       "population": 4397073,
       "isCapital": true
@@ -13,7 +13,7 @@
       "id": "2",
       "name": "Omsk",
       "country": "Russia",
-      "established": "August 2, 1716",
+      "established": "1716-08-02",
       "area": 572.9,
       "population": 1154116,
       "isCapital": false
@@ -22,7 +22,7 @@
       "id": "3",
       "name": "Vancouver",
       "country": "Canada",
-      "established": "March 10, 1870",
+      "established": "1870-03-10",
       "area": 123.63,
       "population": 662248,
       "isCapital": false
@@ -31,28 +31,19 @@
       "id": "4",
       "name": "Havana",
       "country": "Cuba",
-      "established": "November 16, 1519",
+      "established": "1519-11-16",
       "area": 728.26,
       "population": 1814207,
       "isCapital": true
     },
     {
-      "id": "10",
-      "name": "York",
-      "country": "",
-      "established": "",
-      "area": "",
-      "population": "",
-      "isCapital": ""
-    },
-    {
-      "id": "6",
-      "name": "Tomsk",
-      "country": "RF",
-      "established": "14 Aug 1880",
-      "area": "450",
-      "population": "700000",
-      "isCapital": "false"
+      "id": "5",
+      "name": "Nuuk",
+      "country": "Greenland",
+      "established": "1728-08-16",
+      "area": 49,
+      "population": 19872,
+      "isCapital": true
     }
   ]
 }
