@@ -1,7 +1,11 @@
 <script setup>
 import router from '@/router';
-import {reactive} from 'vue';
+import {onMounted, reactive} from 'vue';
+import { useRoute } from 'vue-router';
 import axios from 'axios';
+
+const route = useRoute();
+const itemId = route.params.id;
 
 const form = reactive({
   id: '',
@@ -13,8 +17,13 @@ const form = reactive({
   isCapital: false,
 })
 
+const state = reactive({
+  item: {},
+  isLoading: true,
+})
+
 const handleSubmit = async () => {
-  const newItem = {
+  const updatedItem = {
     id: form.id,
     name: form.name,
     country: form.country,
@@ -22,16 +31,34 @@ const handleSubmit = async () => {
     area: form.area,
     population: form.population,
     isCapital: form.isCapital,
-
   };
 
   try {
-    const response = await axios.post('http://localhost:5000/cities', newItem);
-    router.push('/');
+    const response = await axios.put(`http://localhost:5000/cities/${itemId}`, updatedItem);
+    router.push(`/items/${response.data.id}`);
   } catch (error) {
-    console.error('Error adding item', error);
+    console.error('Error updating item', error);
   };
 };
+
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`http://localhost:5000/cities/${itemId}`);
+    state.item = response.data;
+    form.id = state.item.id;
+    form.name = state.item.name;
+    form.country = state.item.country;
+    form.established = state.item.established;
+    form.area = state.item.area;
+    form.population = state.item.population;
+    form.isCapital = state.item.isCapital;
+  } catch (error) {
+    console.error('Error fetching item', error);
+  } finally {
+    state.isLoading = false;
+  }
+})
 
 const formLabelStyle = "mx-1 block text-xs font-bold text-gray-400";
 const formInputStyle = "border-b-2 text-base font-medium w-full py-1 px-1 mb-2 focus:outline-none focus:border-indigo-300 cursor-pointer";
@@ -48,12 +75,12 @@ const formInputCheckboxStyle = "ml-1 w-4 h-4 cursor-pointer"
   <div class="bg-white drop-shadow-lg rounded-lg overflow-hidden md:m-0">
 
     <header class="py-2 bg-lime-500 text-white text-base font-semibold text-center">
-      Add item
-      <div class="absolute top-2 right-4">
+      Edit item
+      <div class="absolute top-2 left-4">
         <RouterLink
-          to="/"
+          :to="`/items/${state.item.id}`"
           class="hover:text-indigo-500">
-          <i class="pi pi-times"></i>
+          <i class="pi pi-arrow-circle-left"></i>
         </RouterLink>
       </div>
     </header>
@@ -158,7 +185,7 @@ const formInputCheckboxStyle = "ml-1 w-4 h-4 cursor-pointer"
             drop-shadow-md hover:shadow-lg hover:bg-indigo-500"
           type="submit"
         >
-        Add
+        Update
         </button>
         <!-- <button
           class="bg-red-600 hover:bg-red-500 hover:text-white text-white 

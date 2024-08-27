@@ -10,15 +10,6 @@
       "isCapital": true
     },
     {
-      "id": "2",
-      "name": "Omsk",
-      "country": "Russia",
-      "established": "1716-08-02",
-      "area": 572.9,
-      "population": 1154116,
-      "isCapital": false
-    },
-    {
       "id": "3",
       "name": "Vancouver",
       "country": "Canada",
@@ -41,9 +32,18 @@
       "name": "Nuuk",
       "country": "Greenland",
       "established": "1728-08-16",
-      "area": 49,
+      "area": 49.3,
       "population": 19872,
       "isCapital": true
+    },
+    {
+      "id": "2",
+      "name": "Omsk",
+      "country": "Russia",
+      "established": "1716-08-02",
+      "area": 572.9,
+      "population": 1154116,
+      "isCapital": false
     }
   ]
 }
