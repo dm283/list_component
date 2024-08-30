@@ -2,6 +2,7 @@
 // import router from '@/router';
 import {onMounted, reactive} from 'vue';
 import { useRoute, RouterLink, useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
 import axios from 'axios';
 
 const route = useRoute();
@@ -23,18 +24,19 @@ const state = reactive({
   isLoading: true,
 })
 
+const toast = useToast();
 
 const deleteItem = async () => {
   try {
     const confirm = window.confirm('Are you sure you want to delete this item?');
     if (confirm) {
       await axios.delete(`http://localhost:5000/cities/${itemId}`);
-    //   toast.success('Book Deleted Successfully');
+      toast.success('Item deleted successfully');
       router.push('/');
     }
   } catch (error) {
-    console.error('Error deleting book', error);
-    // toast.error('Job Not Deleted');
+    console.error('Error deleting item', error);
+    toast.error('Item has not deleted');
 
   }
 }
@@ -107,14 +109,14 @@ const formInputCheckboxStyle = "ml-1 w-4 h-4"
       <div class="border-t bg-gray-50 py-3 text-center space-x-5">
         <RouterLink :to="`/items/edit/${state.item.id}`">
           <button
-            class="inline-block bg-indigo-400 text-white rounded-full px-3 py-2 w-1/3
+            class="inline-block bg-indigo-400 text-white font-semibold rounded-full px-3 py-2 w-1/3
               drop-shadow-md hover:shadow-lg hover:bg-indigo-500"
           >
           Edit
           </button>
         </RouterLink>
         <button
-          class="inline-block bg-red-400 text-white rounded-full px-3 py-2 w-1/3
+          class="inline-block bg-red-400 text-white font-semibold rounded-full px-3 py-2 w-1/3
               drop-shadow-md hover:shadow-lg hover:bg-red-500"
           @click="deleteItem"
         >

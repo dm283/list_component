@@ -2,6 +2,7 @@
 import router from '@/router';
 import {onMounted, reactive} from 'vue';
 import { useRoute } from 'vue-router';
+import { useToast } from 'vue-toastification';
 import axios from 'axios';
 
 const route = useRoute();
@@ -15,12 +16,14 @@ const form = reactive({
   area: '',
   population: '',
   isCapital: false,
-})
+});
 
 const state = reactive({
   item: {},
   isLoading: true,
-})
+});
+
+const toast = useToast();
 
 const handleSubmit = async () => {
   const updatedItem = {
@@ -35,9 +38,11 @@ const handleSubmit = async () => {
 
   try {
     const response = await axios.put(`http://localhost:5000/cities/${itemId}`, updatedItem);
+    toast.success('Item updated successfully');
     router.push(`/items/${response.data.id}`);
   } catch (error) {
     console.error('Error updating item', error);
+    toast.error('Item has not updated');
   };
 };
 
@@ -61,7 +66,8 @@ onMounted(async () => {
 })
 
 const formLabelStyle = "mx-1 block text-xs font-bold text-gray-400";
-const formInputStyle = "border-b-2 text-base font-medium w-full py-1 px-1 mb-2 focus:outline-none focus:border-indigo-300 cursor-pointer";
+const formInputStyle = "border-b-2 text-base font-medium w-full py-1 px-1 mb-2 \
+  hover:border-indigo-200 focus:outline-none focus:border-indigo-300 cursor-pointer";
 
 const formLabelCheckboxStyle = "ml-3 text-base font-semibold text-gray-400 cursor-pointer"
 const formInputCheckboxStyle = "ml-1 w-4 h-4 cursor-pointer"
@@ -181,7 +187,7 @@ const formInputCheckboxStyle = "ml-1 w-4 h-4 cursor-pointer"
       <!-- <div class="flex justify-center space-x-2 border"> -->
       <div class="border-t bg-gray-50 py-3 text-center">
         <button
-          class="bg-indigo-400 text-white rounded-full px-3 py-2 w-60
+          class="bg-indigo-400 text-white font-semibold rounded-full px-3 py-2 w-60
             drop-shadow-md hover:shadow-lg hover:bg-indigo-500"
           type="submit"
         >

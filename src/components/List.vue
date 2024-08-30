@@ -316,7 +316,7 @@ const checkState = () => {
   </thead>
   <tbody>
     <tr class="h-10 even:bg-gray-100 odd:bg-white text-base text-center 
-        cursor-pointer hover:hover:drop-shadow-md hover:text-gray-500" 
+        cursor-pointer hover:drop-shadow-md hover:text-indigo-700" 
         @click="router.push(`/items/${item.id}`)" v-for="item in state.localData">
       <td v-for="field in state.tableFields">
         <div v-if="typeof(item[field])=='boolean' & item[field]==true"><i class="pi pi-check-square"></i></div>
